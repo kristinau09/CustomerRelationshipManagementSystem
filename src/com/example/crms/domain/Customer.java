@@ -9,12 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
- * Represents a customer in the CRM system.
- * <p/>
- * Note that this is just a starting point - you are free to expand and
- * modify this class!
- *
- * @author Richard Chesterwood
+ * Represents a customer in the Customer Relationship Management System (CRMS).
  */
 @Entity
 public class Customer 
@@ -25,25 +20,9 @@ public class Customer
 	 */
 	@Id
 	private String customerId;
-	
-	/**
-	 * The company name
-	 */
 	private String companyName;
-	
-	/**
-	 * The contact's email address
-	 */
 	private String email;
-	
-	/**
-	 * The contact's telephone number
-	 */
 	private String telephone;
-	
-	/**
-	 * Any notes associated with this customer
-	 */
 	private String notes;
 	
 	/**
@@ -82,9 +61,6 @@ public class Customer
 		this.calls.add(callDetails);		
 	}
 	
-	/**
-	 * A Simple toString implementation
-	 */
 	public String toString()
 	{
 		return this.customerId + ": " + this.companyName ;

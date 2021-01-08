@@ -2,7 +2,6 @@ package com.example.crms.services.customers;
 
 /**
  * An exception type denoting that the required customer was not found.
- * @author Richard Chesterwood
  */
 public class CustomerNotFoundException extends Exception 
 {

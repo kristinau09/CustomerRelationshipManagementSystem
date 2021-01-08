@@ -1,5 +1,6 @@
 package com.example.crms.services.customers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
 public class CustomerManagementMockImpl implements CustomerManagementService {
-	//store the fake data for this class to represent where key is String and value itself is customer
+	//store the fake data for this class to represent. key is String and value itself is customer
 	private HashMap<String, Customer> customerMap;
 	
 	//constructor
@@ -22,49 +23,60 @@ public class CustomerManagementMockImpl implements CustomerManagementService {
 
 	@Override
 	public void newCustomer(Customer newCustomer) {
-		
+		customerMap.put(newCustomer.getCustomerId(), newCustomer);
 
 	}
 
 	@Override
 	public void updateCustomer(Customer changedCustomer) {
-		// TODO Auto-generated method stub
-
+		//we will update this later properly. 
+		//right out it is doing nothing except putting the same reference back into the map which is already there
+		customerMap.put(changedCustomer.getCompanyName(), changedCustomer);
 	}
 
 	@Override
 	public void deleteCustomer(Customer oldCustomer) {
-		// TODO Auto-generated method stub
-
+		customerMap.remove(oldCustomer.getCustomerId());
 	}
 
 	@Override
 	public Customer findCustomerById(String customerId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		//need to check if customer is existed or not
+		Customer foundCustomer = customerMap.get(customerId);
+			if(foundCustomer == null) {
+				throw new CustomerNotFoundException();
+			}
+		return foundCustomer;
 	}
 
 	@Override
 	public List<Customer> findCustomersByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		//there is no find method in java api to find particular values in map apart by key
+		//for this, create a temp list of customers
+		List<Customer> customerList = new ArrayList<Customer>();
+		for(Customer customer: customerMap.values()) {
+			if(customer.getCompanyName().equals(name)) {
+				customerList.add(customer);
+			}
+		}		
+		return customerList;
 	}
 
 	@Override
 	public List<Customer> getAllCustomers() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Customer>(customerMap.values());
 	}
 
 	@Override
 	public Customer getFullCustomerDetail(String customerId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.findCustomerById(customerId);
 	}
 
 	@Override
 	public void recordCall(String customerId, Call callDetails) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
+		Customer customer = this.getFullCustomerDetail(customerId);
+		customer.addCall(callDetails);
 
 	}
 

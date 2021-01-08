@@ -6,8 +6,6 @@ import com.example.crms.domain.Action;
 
 /**
  * This interface defines the functionality required in the Diary Management Service.
- *
- * @author Richard Chesterwood
  */
 public interface DiaryManagementService 
 {

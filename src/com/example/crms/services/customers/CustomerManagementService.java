@@ -5,13 +5,6 @@ import java.util.List;
 import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
-/**
- * This interface defines the functionality we want the Customer Management Service
- * to offer. 
- * <p/>
- * Your job is to implement it. In the early sessions you will write a "Mock" to simulate 
- * a Customer Management Service. In later sessions you'll provide a Database backed implementation.
- */
 public interface CustomerManagementService 
 {
 	/**
@@ -35,9 +28,7 @@ public interface CustomerManagementService
 	public Customer findCustomerById(String customerId) throws CustomerNotFoundException;
 
 	/**
-	 * Finds customers by their name. Note that in a full system, we'd 
-	 * probably offer more sophisticated searching functionality, but for the
-	 * practical this will do for now.
+	 * Finds customers by their name. 
 	 */
 	public List<Customer> findCustomersByName (String name);
 
@@ -55,10 +46,7 @@ public interface CustomerManagementService
 	
 	
 	/**
-	 * Records a call against a particular customer
-	 * 
-	 * (note that this could be achieved by calling the udpate method, but this is a more
-	 * convenient interface)
+	 * Records a call against a particular customer	 * 
 	 */
 	public void recordCall(String customerId, Call callDetails) throws CustomerNotFoundException;
 }

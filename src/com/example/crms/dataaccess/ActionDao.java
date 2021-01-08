@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.example.crms.domain.Action;
 
-// FOR USE IN A LATER CHAPTER - PLEASE IGNORE UNTIL THEN
-
 public interface ActionDao 
 {
 	public void create(Action newAction);

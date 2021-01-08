@@ -5,8 +5,6 @@ import java.util.List;
 import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
-// FOR USE IN A LATER CHAPTER - PLEASE IGNORE UNTIL THEN
-
 public interface CustomerDao 
 {
 	/**

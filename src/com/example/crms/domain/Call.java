@@ -10,13 +10,9 @@ import javax.persistence.Table;
 
 /**
  * Represents a call made by a customer.
- * <p/>
  * For example : "at 4:30pm on the 2nd December, Martha from Acme Corp called 
  * asking if we are interested in buying their Giant Rubber 
  * Bands (for tripping road runners)"
- * 
- * @author Richard Chesterwood
- *
  */
 @Entity
 @Table(name="TBL_CALL")

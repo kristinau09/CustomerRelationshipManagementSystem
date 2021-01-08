@@ -9,8 +9,6 @@ import javax.persistence.Id;
 
 /**
  * Represents the details of an action to be carried out.
- *
- * @author Richard Chesterwood
  */
 @Entity
 public class Action 
@@ -62,11 +60,6 @@ public class Action
 		this.requiredBy = requiredBy;
 		this.owningUser = owningUser;
 		this.complete = complete;
-		
-		// this looks a little odd; it is needed because in an earlier chapter
-		// I used a string for actionIds but when recording for JPA I realised
-		// we needed to use ints. So I've done this adapting to avoiding breaking
-		// the calling code.
 		this.actionId = new Integer(actionId);
 	}
 	
@@ -140,6 +133,6 @@ public class Action
 		this.actionId = actionId;
 	}
 	
-	// needed for JPA - ignore until then
+	// needed for JPA 
 	public Action() {}
 }

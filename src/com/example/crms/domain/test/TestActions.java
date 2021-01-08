@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.example.crms.domain.Action;
 
 /**
- * We've added this short test just to demonstrate the kind of
+ * added this short test just to demonstrate the kind of
  * tests we'd expect to see in a unit test.
  */
 public class TestActions
