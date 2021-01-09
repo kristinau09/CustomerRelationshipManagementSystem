@@ -3,6 +3,8 @@
 
 <beans>
 
-	<!-- add your bean definitions here! -->
+	<bean id="customerService" class="com.example.crms.services.customers.CustomerManagementMockImpl"/>
+	
+	<bean id="diaryService" class="com.example.crms.services.diary.DiaryManagementServiceMockImpl"/>
 
 </beans>

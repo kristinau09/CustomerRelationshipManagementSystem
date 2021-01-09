@@ -43,7 +43,7 @@ public class Action
 	/**
 	 * Constructor of Action
 	 * @param details eg "Ask John in accounts if we can afford a new order"
-	 * @param requiredBy eg "10am, 5 October 2009"
+	 * @param requiredBy eg "10am, 5 October 2021"
 	 * @param owningUser "Mike Jones"
 	 */
 	public Action(String details, Calendar requiredBy, String owningUser)
@@ -74,7 +74,7 @@ public class Action
 	}
 	
 	/**
-	 * A simple toString - feel free to change it
+	 * A simple toString
 	 */
 	public String toString()
 	{

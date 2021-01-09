@@ -30,7 +30,7 @@ public class CustomerManagementMockImpl implements CustomerManagementService {
 	@Override
 	public void updateCustomer(Customer changedCustomer) {
 		//we will update this later properly. 
-		//right out it is doing nothing except putting the same reference back into the map which is already there
+		//right now it is doing nothing except putting the same reference back into the map which is already there
 		customerMap.put(changedCustomer.getCompanyName(), changedCustomer);
 	}
 
@@ -64,7 +64,6 @@ public class CustomerManagementMockImpl implements CustomerManagementService {
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
 		return new ArrayList<Customer>(customerMap.values());
 	}
 
