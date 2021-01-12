@@ -6,5 +6,9 @@
 	<bean id="customerService" class="com.example.crms.services.customers.CustomerManagementMockImpl"/>
 	
 	<bean id="diaryService" class="com.example.crms.services.diary.DiaryManagementServiceMockImpl"/>
+	<bean id="callService" class="com.example.crms.services.call.CallHandlingServiceImpl">
+		<constructor-arg ref="customerService"></constructor-arg>
+		<constructor-arg ref="diaryService"></constructor-arg>
+	</bean>
 
 </beans>
