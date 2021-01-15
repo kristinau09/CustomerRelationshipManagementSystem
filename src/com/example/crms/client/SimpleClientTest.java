@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.example.crms.domain.Action;
 import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
-import com.example.crms.services.call.CallHandlingService;
+import com.example.crms.services.callsHandling.CallHandlingService;
 import com.example.crms.services.customers.CustomerManagementService;
 import com.example.crms.services.customers.CustomerNotFoundException;
 import com.example.crms.services.diary.DiaryManagementService;
@@ -25,6 +25,7 @@ public class SimpleClientTest {
 		Call newCall = new Call("Larry will call from google");
 		Action action1 = new Action("Call by Larry to call him back", new GregorianCalendar(2020,12,2),"abc");
 		Action action2 = new Action("Check our sales department", new GregorianCalendar(2020,12,2),"abc");
+		
 		//create a list of actions where we are passing these two actions
 		List<Action> actions = new ArrayList<Action>();
 		actions.add(action1);

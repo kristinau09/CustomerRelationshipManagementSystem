@@ -1,4 +1,4 @@
-package com.example.crms.services.call;
+package com.example.crms.services.callsHandling;
 
 import java.util.Collection;
 
@@ -18,11 +18,10 @@ public class CallHandlingServiceImpl implements CallHandlingService {
     public CallHandlingServiceImpl(CustomerManagementService customerService, DiaryManagementService diaryService) {
     	this.customerService=customerService;
     	this.diaryService=diaryService;
-		// TODO Auto-generated constructor stub
+		
 	}
 	@Override
-	public void recordCall(String customerId, Call newCall, Collection<Action> actions)
-			throws CustomerNotFoundException {
+	public void recordCall(String customerId, Call newCall, Collection<Action> actions)	throws CustomerNotFoundException {
 		//2 steps: 1. call the customer service to record the call
 		customerService.recordCall(customerId, newCall);
 		

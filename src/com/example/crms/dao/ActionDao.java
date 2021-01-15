@@ -1,4 +1,4 @@
-package com.example.crms.dataaccess;
+package com.example.crms.dao;
 
 import java.util.List;
 
