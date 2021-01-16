@@ -18,8 +18,8 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	private static final String INSERT__CALL_SQL = "INSERT INTO CALL_TABLE(NOTES, TIME_AND_DATE, CUSTOMER_ID) VALUES(?,?,?)";
 	private static final String SELECT_ALL_CUSTOMERS_SQL = "SELECT * FROM CUSTOMER";
 	private static final String UPDATE_CUSTOMER_SQL = "UPDATE CUSTOMER SET COMPANY_NAME=?, EMAIL=?, TELEPHONE=?, NOTES=? WHERE CUSTOMER_ID=?";
-	private static final String SELECT_CUSTOMER_BY_COMPANY_NAME_SQL = "SELECT * FROM CUSTOMER WHERE COMPANY NAME = ?";
-	private static final String SELECT_CUSTOMER_BY_ID_SQL = "SELECT * FROM CUSTOMER WHERE CUSTOMER ID = ?";
+	private static final String SELECT_CUSTOMER_BY_COMPANY_NAME_SQL = "SELECT * FROM CUSTOMER WHERE COMPANY_NAME = ?";
+	private static final String SELECT_CUSTOMER_BY_ID_SQL = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ?";
 	private static final String INSERT_CUSTOMER_SQL = "INSERT INTO CUSTOMER (CUSTOMER_ID, COMPANY_NAME, EMAIL, TELEPHONE, NOTES) VALUES (?,?,?,?,?)";
 	private static final String CREATE_CALL_TABLE_SQL = "CREATE TABLE CALL_TABLE(NOTES VARCHAR(255),\r\n" + 
 			                                            "TIME_AND_DATE DATE, CUSTOMER_ID VARCHAR(20))";
@@ -136,6 +136,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	 */
 	@Override
 	public void addCall(Call newCall, String customerId) throws RecordNotFoundException {
+		//need to verify if customer id exists on call table (customer id is foreign key to call  table) for database integrity
 		Customer foundCustomer = this.getById(customerId);		
 		template.update(INSERT__CALL_SQL, newCall.getNotes(),newCall.getTimeAndDate(), customerId);
 
