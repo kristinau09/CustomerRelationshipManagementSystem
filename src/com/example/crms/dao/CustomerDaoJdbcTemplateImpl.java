@@ -86,8 +86,11 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	public void update(Customer customerToUpdate) throws RecordNotFoundException {
 		//rowsUpdated reflects the number of rows updated
 		int rowsUpdated = template.update(UPDATE_CUSTOMER_SQL,
-				customerToUpdate.getCompanyName(), customerToUpdate.getEmail(), 
-				customerToUpdate.getTelephone(), customerToUpdate.getNotes());
+				          customerToUpdate.getCompanyName(), 
+				          customerToUpdate.getEmail(), 
+				          customerToUpdate.getTelephone(), 
+				          customerToUpdate.getNotes(), 
+				          customerToUpdate.getCustomerId());
 		//rows updated must be 1 otherwise throw an exception
 		if(rowsUpdated != 1) {
 			throw new RecordNotFoundException();
