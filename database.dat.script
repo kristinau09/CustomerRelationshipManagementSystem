@@ -48,7 +48,6 @@ GRANT DBA TO SA
 SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
-INSERT INTO CUSTOMER VALUES('101','Google','larryWall@google.com','4122340987','Email them')
 INSERT INTO CALL_TABLE VALUES('Larry Wall called from google','2021-01-16','101')
 INSERT INTO CALL_TABLE VALUES('Larry Wall called from google','2021-01-16','101')
 INSERT INTO ACTION VALUES(1,'Call back Larry to ask him how things are going',FALSE,'user123','2020-12-31')

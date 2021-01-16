@@ -31,6 +31,7 @@ public class SimpleClientTest {
 			foundCustomer.setTelephone("4122340987");
 			foundCustomer.setEmail("larryWall@google.com");
 			customerService.updateCustomer(foundCustomer);
+			customerService.deleteCustomer(foundCustomer);
 		}catch(CustomerNotFoundException e) {
 			System.out.println("Sorry, customer with that id couldn't be found!");
 		}
