@@ -34,7 +34,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	}
 	
 	public void createTables() {
-		//creating two tables: customer and call
+		//creating two tables: customer and call since they are closely related to each other, we can simply combine them in single dao
 		try {
 			template.update(CREATE_CUSTOMER_TABLE_SQL);
 		}catch(BadSqlGrammarException e) {
@@ -47,7 +47,9 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 			System.out.println("Assuming the Call table already exists.");
 		}
 	}
-
+	/**
+	 * Creates a new customer record in the database
+	 */
 	@Override
 	public void create(Customer customer) {
 		template.update(INSERT_CUSTOMER_SQL,
@@ -55,7 +57,9 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 				customer.getTelephone(), customer.getNotes());
 
 	}
-
+	/**
+	 * Finds a customer based on their ID
+	 */
 	@Override
 	public Customer getById(String customerId) throws RecordNotFoundException {
 		//if the query does not return exactly one row, or does not return exactly one column in that row
@@ -67,13 +71,17 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 		}
 		
 	}
-
+	/**
+	 * Finds all customers whose company name matches the specified name
+	 */
 	@Override
 	public List<Customer> getByName(String companyName) {
 		return template.query(SELECT_CUSTOMER_BY_COMPANY_NAME_SQL, new CustomerRowMapper(), companyName);
 		
 	}
-
+	/**
+	 * Updates the specified customer in the database.
+	 */
 	@Override
 	public void update(Customer customerToUpdate) throws RecordNotFoundException {
 		//rowsUpdated reflects the number of rows updated
@@ -86,7 +94,9 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 		}
 
 	}
-
+	/**
+	 * Deletes the specified customer from the database.
+	 */
 	@Override
 	public void delete(Customer oldCustomer) throws RecordNotFoundException {
 		int rowsDeleted = template.update("DELETE FROM CUSTOMER WHERE CUSTOMER_ID=?", oldCustomer.getCustomerId());
@@ -96,24 +106,37 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 		}
 
 	}
-
+	/**
+	 * Returns a complete collection of customer objects. Note that it is NOT necessary
+	 * to for this method to also return the associated calls (ie getCalls() will return null). 
+	 * 
+	 * This is for efficiency reasons - we may not be interested in the calls for ALL customers
+	 * in the system.
+	 */
 	@Override
 	public List<Customer> getAllCustomers() {
 		
 		return template.query(SELECT_ALL_CUSTOMERS_SQL, new CustomerRowMapper());
 	}
-
+	/**
+	 * Returns the full detail for this customer - ie the customer object and ALL
+	 * calls associated with this customer
+	 */
 	@Override
 	public Customer getFullCustomerDetail(String customerId) throws RecordNotFoundException {
-			//find the customer
+		//find the customer by id
 		Customer customer = this.getById(customerId);
+		
 		List<Call> allCallsForTheCustomer = template.query("SELECT * FROM CALL_TABLE WHERE CUSTOMER_ID=?", new CallRowMapper(), customerId);
 		customer.setCalls(allCallsForTheCustomer);
 		return customer;
 	}
-
+	/**
+	 * Links the specified call to the customer in the database.
+	 */
 	@Override
 	public void addCall(Call newCall, String customerId) throws RecordNotFoundException {
+		Customer foundCustomer = this.getById(customerId);		
 		template.update(INSERT__CALL_SQL, newCall.getNotes(),newCall.getTimeAndDate(), customerId);
 
 	}

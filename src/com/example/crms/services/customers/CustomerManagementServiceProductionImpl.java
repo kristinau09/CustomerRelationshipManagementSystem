@@ -61,7 +61,6 @@ public class CustomerManagementServiceProductionImpl implements CustomerManageme
 	public List<Customer> getAllCustomers() {
 		return customerDao.getAllCustomers();
 	}
-
 	@Override
 	public Customer getFullCustomerDetail(String customerId) throws CustomerNotFoundException {
 		try {

@@ -23,8 +23,8 @@ public class SimpleClientTest {
 		CallHandlingService callService = container.getBean(CallHandlingService.class);
 		DiaryManagementService diaryService = container.getBean(DiaryManagementService.class);
 		Call newCall = new Call("Larry will call from google");
-		Action action1 = new Action("Call by Larry to call him back", new GregorianCalendar(2020,12,2),"abc");
-		Action action2 = new Action("Check our sales department", new GregorianCalendar(2020,12,2),"abc");
+		Action action1 = new Action("Call by Larry to call him back", new GregorianCalendar(2021,0,0),"abc");
+		Action action2 = new Action("Check our sales department", new GregorianCalendar(2021,0,0),"abc");
 		
 		//create a list of actions where we are passing these two actions
 		List<Action> actions = new ArrayList<Action>();
@@ -33,7 +33,7 @@ public class SimpleClientTest {
 		
 		//if customer id is wrong
 		try {
-			callService.recordCall("101", newCall, actions);
+			callService.recordCall("klajdlkajdl", newCall, actions);
 		}catch(CustomerNotFoundException e) {
 			System.out.println("That customer does not exist");
 		}
