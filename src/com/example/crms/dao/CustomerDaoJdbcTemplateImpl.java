@@ -53,8 +53,11 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	@Override
 	public void create(Customer customer) {
 		template.update(INSERT_CUSTOMER_SQL,
-				customer.getCustomerId(), customer.getCompanyName(), customer.getEmail(), 
-				customer.getTelephone(), customer.getNotes());
+				customer.getCustomerId(), 
+				customer.getCompanyName(), 
+				customer.getEmail(), 
+				customer.getTelephone(), 
+				customer.getNotes());
 
 	}
 	/**

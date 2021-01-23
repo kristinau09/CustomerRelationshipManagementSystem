@@ -74,6 +74,7 @@ public class CustomerManagementServiceProductionImpl implements CustomerManageme
 	public void recordCall(String customerId, Call callDetails) throws CustomerNotFoundException {
 		try {
 			customerDao.addCall(callDetails, customerId);
+			
 		}catch(RecordNotFoundException e) {
 			throw new CustomerNotFoundException();
 		}

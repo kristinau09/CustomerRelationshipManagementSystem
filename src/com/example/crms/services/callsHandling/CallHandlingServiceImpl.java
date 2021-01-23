@@ -22,7 +22,7 @@ public class CallHandlingServiceImpl implements CallHandlingService {
 	}
 	@Override
 	public void recordCall(String customerId, Call newCall, Collection<Action> actions)	throws CustomerNotFoundException {
-		//2 steps: 1. call the customer service to record the call
+		//1. call the customer service to record the call
 		customerService.recordCall(customerId, newCall);
 		
 		//2.call the diary service to record the actions

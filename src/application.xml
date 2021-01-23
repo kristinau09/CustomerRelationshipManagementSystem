@@ -1,6 +1,11 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"> 
+        <!-- bean definitions here -->
 
-<beans>
 
 	<!-- DataSource beans-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -32,9 +37,35 @@
 	<bean id="diaryService" class="com.example.crms.services.diary.DiaryManagementServiceProductionImpl">
 		<constructor-arg ref="actionDao"></constructor-arg>
 	</bean>
-	<bean id="callHandlingService" class="com.example.crms.services.callsHandling.CallHandlingServiceImpl">
+	
+	<bean id="callService" class="com.example.crms.services.callsHandling.CallHandlingServiceImpl">
 		<constructor-arg ref="customerService"></constructor-arg>
 		<constructor-arg ref="diaryService"></constructor-arg>
 	</bean>
+	
+	<!-- AOP Weaving-->
+	
+	<bean id="performanceAdvice" class="com.example.crms.advice.PerformanceTimingAdvice"></bean>
+	
+	<aop:config>
+		<aop:aspect ref="performanceAdvice">
+			<aop:around method="recordTiming" 
+			            pointcut="execution ( * com.example.crms.services..*.*(..) )
+			            || execution (* com.example.crms.dao..*.*(..))"/>		
+		</aop:aspect>
+
+	</aop:config>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </beans>
