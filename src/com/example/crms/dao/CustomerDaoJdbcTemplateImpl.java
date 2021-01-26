@@ -5,14 +5,19 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
+@Repository
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	
 	private static final String INSERT__CALL_SQL = "INSERT INTO CALL_TABLE(NOTES, TIME_AND_DATE, CUSTOMER_ID) VALUES(?,?,?)";
@@ -25,14 +30,16 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 			                                            "TIME_AND_DATE DATE, CUSTOMER_ID VARCHAR(20))";
 	private static final String CREATE_CUSTOMER_TABLE_SQL = "CREATE TABLE CUSTOMER(CUSTOMER_ID VARCHAR(20),\r\n" + 
 		                                                    "COMPANY_NAME VARCHAR(50), EMAIL VARCHAR(50), TELEPHONE\r\n" + 
-		                                                    "VARCHAR(20), NOTES VARCHAR(255))";
-	private JdbcTemplate template;
+                                                            "VARCHAR(20), NOTES VARCHAR(255))";
 	
-	//injecting template through constructor
+	@Autowired
+	private JdbcTemplate template;	
+	
 	public CustomerDaoJdbcTemplateImpl(JdbcTemplate template) {
-		this.template=template;
+		this.template = template;
 	}
 	
+	@PostConstruct
 	public void createTables() {
 		//creating two tables: customer and call since they are closely related to each other, we can simply combine them in single dao
 		try {

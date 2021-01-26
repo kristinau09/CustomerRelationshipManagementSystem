@@ -19,7 +19,7 @@ public class Client {
 
 	public static void main(String[] args) {
 
-		ClassPathXmlApplicationContext container= new ClassPathXmlApplicationContext("application.xml");
+		ClassPathXmlApplicationContext container= new ClassPathXmlApplicationContext("application-annotations.xml");
 
 		try {
 			CustomerManagementService customerService = container.getBean(CustomerManagementService.class);		

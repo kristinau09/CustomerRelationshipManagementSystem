@@ -2,6 +2,8 @@ package com.example.crms.services.customers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.crms.dao.CustomerDao;
@@ -10,19 +12,19 @@ import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
 @Transactional
+@Service
 public class CustomerManagementServiceProductionImpl implements CustomerManagementService {
 
-	private CustomerDao customerDao;
+	@Autowired
+	private CustomerDao customerDao;	
 
-	//injecting dependency through constructor
 	public CustomerManagementServiceProductionImpl(CustomerDao customerDao) {
-		this.customerDao=customerDao;
+		this.customerDao = customerDao;
 	}
 
 	@Override
 	public void newCustomer(Customer newCustomer) {
 		customerDao.create(newCustomer);
-
 	}
 
 	@Override
