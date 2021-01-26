@@ -2,9 +2,12 @@ package com.example.crms.services.diary;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.crms.dao.ActionDao;
 import com.example.crms.domain.Action;
 
+@Transactional
 public class DiaryManagementServiceProductionImpl implements DiaryManagementService {
 
 	private ActionDao actionDao;

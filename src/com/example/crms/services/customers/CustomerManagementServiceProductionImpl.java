@@ -2,11 +2,14 @@ package com.example.crms.services.customers;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.crms.dao.CustomerDao;
 import com.example.crms.dao.RecordNotFoundException;
 import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
+@Transactional
 public class CustomerManagementServiceProductionImpl implements CustomerManagementService {
 
 	private CustomerDao customerDao;

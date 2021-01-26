@@ -2,12 +2,15 @@ package com.example.crms.services.callsHandling;
 
 import java.util.Collection;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.crms.domain.Action;
 import com.example.crms.domain.Call;
 import com.example.crms.services.customers.CustomerManagementService;
 import com.example.crms.services.customers.CustomerNotFoundException;
 import com.example.crms.services.diary.DiaryManagementService;
 
+@Transactional
 public class CallHandlingServiceImpl implements CallHandlingService {
 	
 	//dependencies
@@ -31,8 +34,6 @@ public class CallHandlingServiceImpl implements CallHandlingService {
 			diaryService.recordAction(nextAction);
 		}
 		
-		
-
 	}
 
 }
