@@ -54,6 +54,9 @@ public class Action
 		this.complete = false;
 	}
 	
+	// needed for JPA 
+	public Action() {}
+	
 	public Action(String actionId, String details, Calendar requiredBy, String owningUser, boolean complete)
 	{
 		this.details = details;
@@ -133,6 +136,5 @@ public class Action
 		this.actionId = actionId;
 	}
 	
-	// needed for JPA 
-	public Action() {}
+	
 }

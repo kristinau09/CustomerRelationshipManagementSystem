@@ -59,7 +59,7 @@ public class CustomerManagementServiceProductionImpl implements CustomerManageme
 
 	@Override
 	public List<Customer> findCustomersByName(String name) {
-		return customerDao.getByName(name);
+		return customerDao.getByCompanyName(name);
 	}
 
 	@Override

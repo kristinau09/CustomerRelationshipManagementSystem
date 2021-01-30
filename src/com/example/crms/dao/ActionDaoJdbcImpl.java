@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.crms.domain.Action;
 
-@Repository
+//@Repository
 public class ActionDaoJdbcImpl implements ActionDao
 {
 	private static final String DELETE_SQL = "DELETE FROM ACTION WHERE ACTION_ID=?";

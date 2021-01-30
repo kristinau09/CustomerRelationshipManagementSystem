@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.example.crms.domain.Call;
 import com.example.crms.domain.Customer;
 
-@Repository
+//@Repository
 public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	
 	private static final String INSERT__CALL_SQL = "INSERT INTO CALL_TABLE(NOTES, TIME_AND_DATE, CUSTOMER_ID) VALUES(?,?,?)";
@@ -85,7 +85,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao {
 	 * Finds all customers whose company name matches the specified name
 	 */
 	@Override
-	public List<Customer> getByName(String companyName) {
+	public List<Customer> getByCompanyName(String companyName) {
 		return template.query(SELECT_CUSTOMER_BY_COMPANY_NAME_SQL, new CustomerRowMapper(), companyName);
 		
 	}

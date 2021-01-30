@@ -31,6 +31,9 @@ public class Customer
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Call> calls;	
 	
+	// needed for JPA
+	public Customer() {}
+	
 	/**
 	 * Constructor - id, notes and name are required
 	 */
@@ -115,6 +118,5 @@ public class Customer
 		this.calls = calls;
 	}
 
-	// needed for JPA - ignore until then
-	public Customer() {}
+	
 }

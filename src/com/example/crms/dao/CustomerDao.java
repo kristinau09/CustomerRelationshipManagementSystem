@@ -20,7 +20,7 @@ public interface CustomerDao
 	/**
 	 * Finds all customers whose company name matches the specified name
 	 */
-	public List<Customer> getByName(String name);
+	public List<Customer> getByCompanyName(String name);
 
 	/**
 	 * Updates the specified customer in the database.
