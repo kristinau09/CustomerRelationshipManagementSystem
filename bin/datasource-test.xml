@@ -16,21 +16,29 @@
         
         <!-- bean definitions here -->
 
-    <!-- Transaction Manager-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" autowire="byName"/>    
+    <!-- Transaction Manager for the Project-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" autowire="byType"></bean>      
    
 	<!-- DataSource beans-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver"></property>
-		<property name="url" value="jdbc:hsqldb:file:database.dat;shutdown=true"></property>
+		<property name="url" value="jdbc:hsqldb:file:databaseTESTING.dat;shutdown=true"></property>
 		<property name="username" value="sa"></property>
 		<property name="password" value=""></property>
 	</bean>
 	
-	<!-- Template beans-->
-	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate" autowire="byName" />	
+	<!--EntityManagerFactory Config-->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false"></property>
+				<property name="generateDdl" value="true"></property>	
+			</bean>
+        </property>
+        <property name="dataSource" ref="dataSource"></property>
+	</bean>
 	
-	<!-- Tells Spring to search for AOP annoatations-->
+	<!-- Tells Spring to search for AOP annotations-->
 	<aop:aspectj-autoproxy/>
 	
 	<!-- Transaction Configuration-->	
@@ -38,17 +46,5 @@
 	
 	<!-- Find all the bean automatically when it sees @ annotation-->
 	<context:component-scan base-package="com.example.crms"></context:component-scan>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 </beans>

@@ -14,9 +14,9 @@
 
     <!-- Transaction Manager-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    	<property name="dataSource" ref="dataSource"></property>
-    
+    	<property name="dataSource" ref="dataSource"></property>    
     </bean>
+    
 	<!-- DataSource beans-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver"></property>
@@ -38,8 +38,9 @@
 	<bean id="actionDao" class="com.example.crms.dao.ActionDaoJdbcImpl" init-method="createTables">
 		<constructor-arg ref="template"></constructor-arg>
 	</bean>
-
+	
 	<!-- Service Beans-->
+	 
 	<bean id="customerService" class="com.example.crms.services.customers.CustomerManagementServiceProductionImpl">
 		<constructor-arg ref="customerDao"></constructor-arg>
 	</bean>
@@ -53,6 +54,7 @@
 		<constructor-arg ref="diaryService"></constructor-arg>
 	</bean>
 	
+	
 	<!-- AOP Weaving-->
 	
 	<!-- <bean id="performanceAdvice" class="com.example.crms.advice.PerformanceTimingAdvice"></bean>
@@ -65,18 +67,6 @@
 		</aop:aspect>
 	</aop:config>
 	-->
-	<tx:annotation-driven />
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<tx:annotation-driven transaction-manager="transactionManager"/>	
 
 </beans>
